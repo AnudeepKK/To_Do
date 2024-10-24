@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Django To Do List App</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    .todo-header {
+      background-color: #17a2b8;
+      padding: 20px;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      margin-bottom: 30px;
+    }
+
+    .todo-input {
+      margin-bottom: 20px;
+    }
+
+    .list-group-item:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+
+    .close-btn:hover {
+      background-color: #f44336;
+      color: white;
+      cursor: pointer;
+    }
+
+    .form-control {
+      border-radius: 0;
+      padding: 10px;
+    }
+
+    .input-group {
+      margin-bottom: 30px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="todo-header">
+      <h2>Django To Do List App</h2>
+    </div>
+
+    <form action="" method="POST" class="todo-input">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" class="form-control" name="title" id="myInput" placeholder="Search or Add a new task...">
+        <div class="input-group-append">
+          <button class="btn btn-info" type="submit">Add</button>
+        </div>
+      </div>
+    </form>
+
+    <ul class="list-group">
+      {% for todo in todos reversed %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ todo.title | title }}
+        <a href="delete/{{todo.id}}" class="close-btn btn btn-sm btn-outline-danger">Delete</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
